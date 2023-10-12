@@ -13,6 +13,10 @@ namespace hospital_management.Model
 
         [ForeignKey("PatientId")]
         public Patient? Patient { get; set; }
+        public Guid DoctorId { get; set; }
+
+        [ForeignKey("DoctorId")]
+        public Doctor? Doctor { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
@@ -20,7 +24,9 @@ namespace hospital_management.Model
         public string? Symptoms { get; set; }
         public double? Consultation_Fee { get; set; }
         public string? Status { get; set; }
+        public string? Test_Data { get; set; }
         
         public DateTime VisitDate { get; set; }
+        public IEnumerable<MedicalDetail>? MedicalDetails { get; set; }
     }
 }
