@@ -1,6 +1,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using hospital_management.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Stripe;
+using hospital_management.Repository;
+using hospital_management.Repository.Interface;
+
 namespace hospital_management
 {
     public class Program
@@ -9,7 +16,7 @@ namespace hospital_management
         {
             var builder = WebApplication.CreateBuilder(args);
             // For Entity Framework
-            var connectionString = builder.Configuration.GetConnectionString("DataContextConnection") ?? throw new InvalidOperationException("Connection string 'DataContextConnection' not found.");
+            var connectionString = builder.Configuration.GetConnectionString("Connection") ?? throw new InvalidOperationException("Connection string 'Connection' not found.");
             builder.Services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(connectionString));
 
@@ -22,11 +29,38 @@ namespace hospital_management
             builder.Services.Configure<IdentityOptions>(
                 opts => opts.SignIn.RequireConfirmedEmail = true);
 
+            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+
             // Add services to the container.
             builder.Services.AddControllers();
+            builder.Services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateIssuerSigningKey = true,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                    };
+
+                });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddAutoMapper(typeof(Program));
+            builder.Services.AddScoped<IPatientService, PatientService>();
 
             var app = builder.Build();
 

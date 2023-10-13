@@ -11,10 +11,12 @@ namespace hospital_management.Model
 
         [ForeignKey("PatientId")]
         public Patient? Patient { get; set; }
-        public Guid MedicalId { get; set; }
+        public Guid LabStaffId { get; set; }
 
-        [ForeignKey("MedicalId")]
-        public Medical? Medical { get; set; }
+        [ForeignKey("LabStaffId")]
+        public LabStaff? LabStaff { get; set; }
+
+        [Required]
         public decimal Total_Ptice { get; set; }
         public DateTime Test_Date { get; set; }
         public IEnumerable<TestDetail>? TestDetails { get; set; }

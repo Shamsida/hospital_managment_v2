@@ -17,5 +17,6 @@ namespace hospital_management.Model
         public string? Side_Effects { get; set; }
         public string? Image { get; set; }
         public ICollection<MedicalDetail>? MedicalDetails { get; set; }
+        public ICollection<MedicineDetail>? MedicineDetails { get; set; }
     }
 }

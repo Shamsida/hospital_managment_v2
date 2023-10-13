@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace hospital_management.Model
 {
-    public class LabStaffcs
+    public class LabStaff
     {
         [Key]
         public Guid Id { get; set; }

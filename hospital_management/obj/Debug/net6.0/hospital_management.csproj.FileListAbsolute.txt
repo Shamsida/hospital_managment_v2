@@ -283,3 +283,5 @@ C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net
 C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net6.0\hospital_management.staticwebassets.runtime.json
 C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\User\source\repos\hospital_management\hospital_management\obj\Debug\net6.0\hospital_management.RazorAssemblyInfo.cache
+C:\Users\User\source\repos\hospital_management\hospital_management\obj\Debug\net6.0\hospital_management.RazorAssemblyInfo.cs
