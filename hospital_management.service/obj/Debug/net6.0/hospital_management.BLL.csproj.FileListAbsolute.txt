@@ -1,0 +1,17 @@
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.AssemblyInfo.cs
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\hospital_management\hospital_management.service\bin\Debug\net6.0\hospital_management.BLL.deps.json
+C:\Users\User\source\repos\hospital_management\hospital_management.service\bin\Debug\net6.0\hospital_management.BLL.runtimeconfig.json
+C:\Users\User\source\repos\hospital_management\hospital_management.service\bin\Debug\net6.0\hospital_management.BLL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.service\bin\Debug\net6.0\hospital_management.BLL.pdb
+C:\Users\User\source\repos\hospital_management\hospital_management.service\bin\Debug\net6.0\hospital_management.DAL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.service\bin\Debug\net6.0\hospital_management.DAL.pdb
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.csproj.CopyComplete
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\refint\hospital_management.BLL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.pdb
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.genruntimeconfig.cache
+C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\ref\hospital_management.BLL.dll
