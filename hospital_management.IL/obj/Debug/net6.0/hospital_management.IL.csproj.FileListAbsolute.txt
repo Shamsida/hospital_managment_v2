@@ -1,0 +1,15 @@
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\hospital_management.IL.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\hospital_management.IL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\hospital_management.IL.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\hospital_management.IL.AssemblyInfo.cs
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\hospital_management.IL.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\bin\Debug\net6.0\hospital_management.IL.deps.json
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\bin\Debug\net6.0\hospital_management.IL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\bin\Debug\net6.0\hospital_management.IL.pdb
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\bin\Debug\net6.0\hospital_management.DAL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\bin\Debug\net6.0\hospital_management.DAL.pdb
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\hospital_management.IL.csproj.CopyComplete
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\hospital_management.IL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\refint\hospital_management.IL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\hospital_management.IL.pdb
+C:\Users\User\source\repos\hospital_management\hospital_management.IL\obj\Debug\net6.0\ref\hospital_management.IL.dll

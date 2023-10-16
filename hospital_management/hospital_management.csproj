@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\hospital_management.IL\hospital_management.IL.csproj" />
     <ProjectReference Include="..\hospital_management.service\hospital_management.BLL.csproj" />
   </ItemGroup>
 

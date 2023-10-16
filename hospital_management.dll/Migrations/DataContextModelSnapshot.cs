@@ -584,8 +584,7 @@ namespace hospital_management.DAL.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Phone_Number")
                         .HasColumnType("float");

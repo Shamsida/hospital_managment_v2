@@ -1,10 +1,6 @@
 ﻿using hospital_management.DAL.DTO.PatientDto;
+using hospital_management.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace hospital_management.BLL.Services.Interface
 {

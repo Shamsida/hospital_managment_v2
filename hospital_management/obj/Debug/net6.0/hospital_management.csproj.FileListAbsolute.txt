@@ -289,3 +289,9 @@ C:\Users\User\source\repos\hospital_management\hospital_management\obj\Debug\net
 C:\Users\User\source\repos\hospital_management\hospital_management\obj\Debug\net6.0\hospital_management.pdb
 C:\Users\User\source\repos\hospital_management\hospital_management\obj\Debug\net6.0\hospital_management.genruntimeconfig.cache
 C:\Users\User\source\repos\hospital_management\hospital_management\obj\Debug\net6.0\ref\hospital_management.dll
+C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net6.0\MailKit.dll
+C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net6.0\MimeKit.dll
+C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net6.0\NETCore.MailKit.dll
+C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net6.0\hospital_management.IL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management\bin\Debug\net6.0\hospital_management.IL.pdb

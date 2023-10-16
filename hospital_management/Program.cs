@@ -7,6 +7,11 @@ using Stripe;
 using hospital_management.DAL.Data;
 using hospital_management.BLL.Services;
 using hospital_management.BLL.Services.Interface;
+//using NETCore.MailKit.Core;
+using hospital_management.DAL.Models;
+using AutoMapper;
+using hospital_management.IL;
+using hospital_management.IL.Mapper;
 
 namespace hospital_management
 {
@@ -41,8 +46,14 @@ namespace hospital_management
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddAutoMapper(typeof(Program));
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
+            //Add Email Configs
+            var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            builder.Services.AddSingleton(emailConfig);
+
             builder.Services.AddScoped<IPatientService, PatientService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
             var app = builder.Build();
 

@@ -30,6 +30,7 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
 		<PackageReference Include="Moq" Version="4.20.69" />
+		<PackageReference Include="NETCore.MailKit" Version="2.1.0" />
 		<PackageReference Include="Stripe.net" Version="42.8.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
@@ -37,6 +38,11 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\hospital_management.dll\hospital_management.DAL.csproj" />
+	  <ProjectReference Include="..\hospital_management.IL\hospital_management.IL.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>

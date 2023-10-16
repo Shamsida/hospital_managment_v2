@@ -15,3 +15,5 @@ C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\D
 C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.pdb
 C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\hospital_management.BLL.genruntimeconfig.cache
 C:\Users\User\source\repos\hospital_management\hospital_management.service\obj\Debug\net6.0\ref\hospital_management.BLL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.service\bin\Debug\net6.0\hospital_management.IL.dll
+C:\Users\User\source\repos\hospital_management\hospital_management.service\bin\Debug\net6.0\hospital_management.IL.pdb

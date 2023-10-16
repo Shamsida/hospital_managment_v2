@@ -45,7 +45,6 @@ namespace hospital_management.DAL.Models
         public string? ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Phone Number is Required")]
-        [Phone]
         public double Phone_Number { get; set; } = 0;
         public string? Address { get; set; }
         public bool IsMailConfiormed { get; set; }

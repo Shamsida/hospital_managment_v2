@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace hospital_management.DAL.DTO.PatientDto
 {
@@ -13,7 +9,8 @@ namespace hospital_management.DAL.DTO.PatientDto
     {
         [Required(ErrorMessage = "Username is Required")]
         [StringLength(16, ErrorMessage = "Must be between 5 and 16 character", MinimumLength = 5)]
-        public string? Username { get; set; }
+        [NotNull]
+        public string Username { get; set; } = string.Empty;
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
@@ -26,7 +23,7 @@ namespace hospital_management.DAL.DTO.PatientDto
         [Required(ErrorMessage = "Email is Required")]
         [EmailAddress]
         public string? Email { get; set; }
-        public double? Age { get; set; }
+        public double Age { get; set; }
         public string? Gender { get; set; }
 
         [Required(ErrorMessage = "Password is Required")]
@@ -41,7 +38,6 @@ namespace hospital_management.DAL.DTO.PatientDto
         public string? ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Phone Number is Required")]
-        [Phone]
         public double Phone_Number { get; set; } = 0;
         public string? Address { get; set; }
     }
