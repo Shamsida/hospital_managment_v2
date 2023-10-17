@@ -38,7 +38,8 @@ namespace hospital_management.DAL.DTO.PatientDto
         public string? ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Phone Number is Required")]
-        public double Phone_Number { get; set; } = 0;
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must contain exactly 10 digits.")]
+        public double Phone_Number { get; set; }
         public string? Address { get; set; }
     }
 }

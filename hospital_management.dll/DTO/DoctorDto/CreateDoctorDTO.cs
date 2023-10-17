@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using hospital_management.DAL.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,16 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace hospital_management.DAL.Models
+namespace hospital_management.DAL.DTO.DoctorDto
 {
-    public class Patient
+    public class CreateDoctorDTO
     {
-        [Key]
-        public Guid Id { get; set; }
+        public Guid DepartmentId { get; set; }
 
         [Required(ErrorMessage = "Username is Required")]
         [StringLength(16, ErrorMessage = "Must be between 5 and 16 character", MinimumLength = 5)]
-        public string Username { get; set; } = null!;
+        public string? Username { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(100)")]
@@ -26,14 +26,12 @@ namespace hospital_management.DAL.Models
         [Column(TypeName = "nvarchar(100)")]
         public string? Lastname { get; set; }
 
-        [Required(ErrorMessage = "Email is Required")]
-        [EmailAddress]
-        public string? Email { get; set; }
-        public double? Age { get; set; }
-        public string? Gender { get; set; } 
-        public string Role { get; set; } = null!;
+        [Required]
+        public string? EmailId { get; set; }
+        public string? Gender { get; set; }
 
         [Required(ErrorMessage = "Password is Required")]
+        [StringLength(20, ErrorMessage = "Must be between 5 and 20 character", MinimumLength = 5)]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
@@ -42,10 +40,7 @@ namespace hospital_management.DAL.Models
         [Compare("Password")]
         [NotMapped]
         public string? ConfirmPassword { get; set; }
-
-        [Required(ErrorMessage = "Phone number is required.")]
-        [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must contain exactly 10 digits.")]
-        public double Phone_Number { get; set; }
-        public string? Address { get; set; }
+        public double Phone_Number { get; set; } 
+        public string? Specialist_In { get; set; }
     }
 }

@@ -1,23 +1,24 @@
-﻿
+﻿using hospital_management.DAL.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace hospital_management.DAL.DTO.PatientDto
+namespace hospital_management.DAL.DTO.DoctorDto
 {
-    public class PatientDataDTO
+    public class DoctorDTO
     {
-        public Guid Id { get; set; }
+        public Guid DepartmentId { get; set; }
         public string? Username { get; set; }
         public string? Firstname { get; set; }
         public string? Lastname { get; set; }
-        public string? Email { get; set; }
-        public double? Age { get; set; }
         public string? Gender { get; set; }
-        public double Phone_Number { get; set; }
-        public string? Address { get; set; }
-        public string? Password { get; set; }
         public string? Role { get; set; }
-
+        public double Phone_Number { get; set; }
+        public string? Specialist_In { get; set; }
     }
 }

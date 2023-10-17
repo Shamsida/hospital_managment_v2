@@ -10,9 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Moq;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,7 +124,7 @@ namespace hospital_management.BLL.Services
             try
             {
                 var patient = await _dataContext.Patients
-                            .Where(x => x.Role == "")
+                            .Where(x => x.Role == "patient")
                             .FirstOrDefaultAsync(u => u.Username == username);
 
                 if (patient == null)
@@ -162,6 +166,10 @@ namespace hospital_management.BLL.Services
                 {
                     throw new Exception("User already exists!");
                 }
+                if (await UserExists(patientData.Username))
+                {
+                    throw new Exception("Username is taken..Try another name");
+                }
 
                 var patient = new Patient
                 {
@@ -174,15 +182,13 @@ namespace hospital_management.BLL.Services
                     Password = BCrypt.Net.BCrypt.HashPassword(patientData.Password, 10),
                     Phone_Number = patientData.Phone_Number,
                     Address = patientData.Address,
-                    Role = "patient",
-                    IsMailConfiormed = false
+                    Role = "patient"
                 };
 
                 _dataContext.Patients.Add(patient);
                 await _dataContext.SaveChangesAsync();
                 var ptntDto = _mapper.Map<PatientDataDTO>(patient);
                 return ptntDto;
-                //return ptntDto;
             }
             catch (Exception ex)
             {
@@ -191,14 +197,138 @@ namespace hospital_management.BLL.Services
             }
         }
 
-        public Task<LoginResDTO> Login(LoginReqDTO loginReq)
+        private async Task<bool> UserExists(string username)
         {
-            throw new NotImplementedException();
+            return await _dataContext.Patients.AnyAsync(x => x.Username == username.ToLower());
         }
 
-        public Task<bool> Delete(int Id)
+        public async Task<LoginResDTO> Login(LoginReqDTO loginReq)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (loginReq == null)
+                {
+                    throw new Exception("Invalid Enrty");
+                };
+                var ptn = await _dataContext.Patients
+                          .SingleOrDefaultAsync(e => e.Username.ToLower() == loginReq.Username.ToLower() && e.Role == "patient");
+
+                if (ptn == null || !BCrypt.Net.BCrypt.Verify(loginReq.Password, ptn.Password))
+                {
+                    throw new Exception("Invalid user name or password");
+                }
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var token = Encoding.ASCII.GetBytes(secretkey);
+
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                    new Claim(ClaimTypes.Name, ptn.Username),
+                    new Claim(ClaimTypes.Role,ptn.Role)
+                    }),
+
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    SigningCredentials = new(new SymmetricSecurityKey(token), SecurityAlgorithms.HmacSha256)
+                };
+                var jwttoken = tokenHandler.CreateToken(tokenDescriptor);
+                LoginResDTO loginResDTO = new LoginResDTO()
+                {
+                    Patient = ptn,
+                    Token = tokenHandler.WriteToken(jwttoken)
+
+                };
+                return loginResDTO;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred.");
+                throw;
+            }
+        }
+
+        public async Task<Patient> Put(Guid Id, UpdatePatientDTO patientData)
+        {
+            try
+            {
+                var ptn = await _dataContext.Patients.FirstOrDefaultAsync(x => x.Id == Id);
+                if (ptn == null)
+                {
+                    throw new Exception("Patient Not Found");
+                }
+                if (patientData == null)
+                {
+                    throw new Exception("Invalid entry");
+                }
+
+                if (!string.IsNullOrEmpty(patientData.Username))
+                {
+                    ptn.Username = patientData.Username;
+                }
+
+                if (!string.IsNullOrEmpty(patientData.Firstname))
+                {
+                    ptn.Firstname = patientData.Firstname;
+                }
+
+                if (!string.IsNullOrEmpty(patientData.Lastname))
+                {
+                    ptn.Lastname = patientData.Lastname;
+                }
+
+                if (!string.IsNullOrEmpty(patientData.Email))
+                {
+                    ptn.Email = patientData.Email;
+                }
+
+                if (patientData.Age.HasValue)
+                {
+                    ptn.Age = patientData.Age.Value;
+                }
+
+                if (!string.IsNullOrEmpty(patientData.Gender))
+                {
+                    ptn.Gender = patientData.Gender;
+                }
+
+                if (patientData.Phone_Number != 0)
+                {
+                    ptn.Phone_Number = patientData.Phone_Number;
+                }
+
+                if (!string.IsNullOrEmpty(patientData.Address))
+                {
+                    ptn.Address = patientData.Address;
+                }
+
+                await _dataContext.SaveChangesAsync();
+                return ptn;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred.");
+                throw;
+            }
+        }
+        public async Task<bool> Delete(Guid Id)
+        {
+            try
+            {
+                var ptn = await _dataContext.Patients.FirstOrDefaultAsync(x => x.Id == Id);
+                if (ptn == null)
+                {
+                    throw new Exception("Not Found");
+                }
+                _dataContext.Patients.Remove(ptn);
+                await _dataContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred.");
+                throw;
+            }
         }
     }
 }

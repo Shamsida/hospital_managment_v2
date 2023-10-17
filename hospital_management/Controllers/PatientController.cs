@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Stripe;
 using System.Net;
 
 namespace hospital_management.Controllers
@@ -120,18 +121,20 @@ namespace hospital_management.Controllers
 
                 var message = new Message(new string[] { patient.Email! }, "Confirmation email link", emailContent);
                 _emailService.SendEmail(message);
-                return Ok(patient);
+
+                res.StatusCode = HttpStatusCode.OK;
+                res.StatusMessage = "Registered Successfully. Check your mail to verify emailId.";
+                res.Success = true;
+                res.Result = patient;
+                return Ok(res);
             }
             else
             {
-                // Handle the case where user creation failed (e.g., duplicate email or other issues)
                 res.StatusCode = HttpStatusCode.BadRequest;
                 res.Error = "User creation failed";
                 res.Success = false;
                 return BadRequest(res);
             }
-
-
         }
 
         [HttpGet("api/ConfirmEmail")]
@@ -153,6 +156,69 @@ namespace hospital_management.Controllers
             res.Error = "This User Doesnot exist!";
             res.Success = false;
             return BadRequest(res);
+        }
+
+        [HttpPost("api/patient/Login")]
+        public async Task<ActionResult> Login(LoginReqDTO loginReq)
+        {
+            var ptn = await patientService.Login(loginReq);
+            if (ptn == null)
+            {
+                res.StatusCode = HttpStatusCode.BadRequest;
+                res.Error = "Inavlid Credential";
+                res.Success = false;
+                return BadRequest(res);
+            }
+            res.StatusCode = HttpStatusCode.OK;
+            res.StatusMessage = "Login Successfully";
+            res.Success = true;
+            res.Result = ptn;
+            return Ok(res);
+        }
+
+        [HttpPut("api/patient/UpdatePatientData")]
+        public async Task<IActionResult> Put(Guid Id, UpdatePatientDTO patientData)
+        {
+            var ptn = await patientService.Put(Id, patientData);
+            if (ptn == null)
+            {
+                res.StatusCode = HttpStatusCode.BadRequest;
+                res.Error = "Inavlid Credential";
+                res.Success = false;
+                return BadRequest(res);
+            }
+            res.StatusCode = HttpStatusCode.OK;
+            res.StatusMessage = "Data Updated Successfully";
+            res.Success = true;
+            res.Result = ptn;
+            return Ok(res);
+        }
+
+        [HttpDelete("api/patient/DeletePatient")]
+        public async Task<IActionResult> Delete(Guid Id)
+        {
+            try
+            {
+                var ptn = await patientService.Delete(Id);
+                if (!ptn)
+                {
+                    res.StatusCode = HttpStatusCode.BadRequest;
+                    res.Error = "This Patient Doesnot exist!";
+                    res.Success = false;
+                    return BadRequest(res);
+                }
+                res.StatusCode = HttpStatusCode.OK;
+                res.StatusMessage = "Delete Patient Successfully";
+                res.Success = true;
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                res.StatusCode = HttpStatusCode.BadRequest;
+                res.Error = ex.Message;
+                res.Success = false;
+                return BadRequest(res);
+            }
         }
 
     }

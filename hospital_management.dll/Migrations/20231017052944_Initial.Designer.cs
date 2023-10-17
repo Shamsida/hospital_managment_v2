@@ -12,8 +12,8 @@ using hospital_management.DAL.Data;
 namespace hospital_management.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231016104113_second")]
-    partial class second
+    [Migration("20231017052944_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -577,9 +577,6 @@ namespace hospital_management.DAL.Migrations
 
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsMailConfiormed")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Lastname")
                         .IsRequired()
